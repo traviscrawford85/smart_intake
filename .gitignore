@@ -67,3 +67,9 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+scripts/
+notebooks/
+data/
+examples/
+test/
+tests/
