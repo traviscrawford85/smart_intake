@@ -23,21 +23,31 @@ page = st.sidebar.radio(
 if page == "Dashboard":
     st.title("📊 Intake Agent Metrics")
     summary = get_dashboard_summary()
-    if summary:
-        col1, col2, col3, col4, col5 = st.columns(5)
-        with col1:
-            st.metric(label="Qualified Leads", value=summary["total_qualified_leads"])
-        with col2:
-            st.metric(label="Lead Reviews", value=summary["total_lead_reviews"])
-        with col3:
-            st.metric(label="Notifications Sent", value=summary["notifications_sent"])
-        with col4:
-            st.metric(label="Callbacks/Updates", value=summary["callbacks_or_updates"])
-        with col5:
-            st.metric(label="Practice Areas", value=len(summary["practice_area_chart"]))
-        st.caption("Metrics reflect the current state of the Smart Intake backend.")
+    if not summary:
+        # Placeholder data if backend is empty or unavailable
+        summary = {
+            "total_qualified_leads": 0,
+            "total_lead_reviews": 0,
+            "notifications_sent": 0,
+            "callbacks_or_updates": 0,
+            "practice_area_chart": [],
+            "placeholder": True,
+        }
+    col1, col2, col3, col4, col5 = st.columns(5)
+    with col1:
+        st.metric(label="Qualified Leads", value=summary["total_qualified_leads"])
+    with col2:
+        st.metric(label="Lead Reviews", value=summary["total_lead_reviews"])
+    with col3:
+        st.metric(label="Notifications Sent", value=summary["notifications_sent"])
+    with col4:
+        st.metric(label="Callbacks/Updates", value=summary["callbacks_or_updates"])
+    with col5:
+        st.metric(label="Practice Areas", value=len(summary["practice_area_chart"]))
+    if summary.get("placeholder"):
+        st.warning("Showing placeholder data. Add leads to see real metrics.")
     else:
-        st.error("Could not fetch dashboard summary from backend.")
+        st.caption("Metrics reflect the current state of the Smart Intake backend.")
 
 elif page == "Settings":
     st.title("⚙️ API Tokens & Webhooks Management")

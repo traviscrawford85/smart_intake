@@ -11,6 +11,8 @@ class QualifiedLead(BaseModel):
     practice_area: Optional[str]
     created_at: datetime
 
+    model_config = {"from_attributes": True}
+
 
 class LeadReview(BaseModel):
     id: int
@@ -20,10 +22,14 @@ class LeadReview(BaseModel):
     status: str  # e.g. "approved", "rejected", "callback", "update_requested"
     notes: Optional[str]
 
+    model_config = {"from_attributes": True}
+
 
 class PracticeAreaChartData(BaseModel):
     practice_area: str
     lead_count: int
+
+    model_config = {"from_attributes": True}
 
 
 class NotificationSent(BaseModel):
@@ -34,6 +40,8 @@ class NotificationSent(BaseModel):
     sent_at: datetime
     status: str  # e.g. "delivered", "failed"
 
+    model_config = {"from_attributes": True}
+
 
 class TriageCallbackOrUpdate(BaseModel):
     id: int
@@ -43,6 +51,8 @@ class TriageCallbackOrUpdate(BaseModel):
     requested_at: datetime
     status: str  # e.g. "pending", "completed"
 
+    model_config = {"from_attributes": True}
+
 
 class DashboardSummary(BaseModel):
     total_qualified_leads: int
@@ -50,3 +60,5 @@ class DashboardSummary(BaseModel):
     notifications_sent: int
     callbacks_or_updates: int
     practice_area_chart: List[PracticeAreaChartData]
+
+    model_config = {"from_attributes": True}
