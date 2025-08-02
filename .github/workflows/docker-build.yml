@@ -1,0 +1,43 @@
+name: Build and Lint Containers
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:20.10.7
+        options: --privileged
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Lint Python (all services)
+        run: |
+          pip install flake8
+          flake8 --config=.flake8 --count --statistics --show-source \
+            intake_agent/ clio_manage/ smart_intake_dashboard/
+
+      - name: Build intake_agent image
+        run: docker build -t intake-agent ./intake_agent
+
+      - name: Build clio_manage image
+        run: docker build -t clio-manage ./clio_manage
+
+      - name: Build smart_intake_dashboard image
+        run: docker build -t smart-intake-dashboard ./smart_intake_dashboard
+
+      # Optionally, run tests here if you have them
+
+      - name: Docker Compose Build (integration test)
+        run: docker-compose build

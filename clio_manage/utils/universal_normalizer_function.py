@@ -1,6 +1,7 @@
 import base64
 import json
 
+
 def try_base64_decode(value):
     """
     Try base64 decode. Return decoded string if successful, else return original.
@@ -13,11 +14,12 @@ def try_base64_decode(value):
         # Only accept if result decodes cleanly to utf-8
         as_str = decoded.decode("utf-8")
         # Avoid false positives: base64'd JSON will look like {" or [
-        if as_str.strip().startswith(('{', '[')):
+        if as_str.strip().startswith(("{", "[")):
             return as_str
         return value  # Looks like plain text, not base64-JSON
     except Exception:
         return value
+
 
 def try_json_parse(value):
     """
@@ -29,6 +31,7 @@ def try_json_parse(value):
         return json.loads(value)
     except Exception:
         return value
+
 
 def normalize_field(value):
     """
@@ -48,23 +51,24 @@ def normalize_field(value):
             return v2
     return v
 
+
 # Example: parsing message fields in an array of leads
 def normalize_leads(data):
     """
     Walks through list of leads (dicts), normalizing 'message' and optionally other fields.
     """
     normalized = []
-    for lead in data.get('inbox_leads', []):
+    for lead in data.get("inbox_leads", []):
         # Normalize 'message' field
-        if 'message' in lead:
-            lead['message'] = normalize_field(lead['message'])
+        if "message" in lead:
+            lead["message"] = normalize_field(lead["message"])
         # If you know other fields that need it, do the same:
         # if 'notes' in lead: lead['notes'] = normalize_field(lead['notes'])
         normalized.append(lead)
     return normalized
 
+
 # Example usage:
 # payload = ... (dict from Clio or elsewhere)
 # leads = normalize_leads(payload)
 # print(leads[0]['message'])  # Now will be plain text or dict, never base64 junk
-

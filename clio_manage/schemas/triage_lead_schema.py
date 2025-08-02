@@ -39,19 +39,3 @@ class ContactCreate(BaseModel):
     tags: Optional[List[str]] = ["Lead"]
     addresses: Optional[List[Address]]
     custom_field_values: Optional[List[CustomFieldValue]]
-
-
-from .schemas.analytics_schema import *
-from .schemas.base import *
-from .schemas.clio_api import *
-
-# Unified Clio Manage schemas import/export
-from .schemas.clio_token_schema import *
-from .schemas.communication_schema import *
-from .schemas.contact_schema import *
-from .schemas.note import *
-from .schemas.practice_area_schema import *
-from .schemas.tag import *
-from .schemas.webhook_event_schema import *
-
-# Use ErrorResponse from base.py for error schemas

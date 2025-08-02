@@ -1,17 +1,19 @@
 import base64
 import json
 
+
 def try_base64_decode(value):
     if not isinstance(value, str):
         return value
     try:
         decoded = base64.b64decode(value, validate=True)
         as_str = decoded.decode("utf-8")
-        if as_str.strip().startswith(('{', '[')):
+        if as_str.strip().startswith(("{", "[")):
             return as_str
         return value
     except Exception:
         return value
+
 
 def try_json_parse(value):
     if not isinstance(value, str):
@@ -20,6 +22,7 @@ def try_json_parse(value):
         return json.loads(value)
     except Exception:
         return value
+
 
 def normalize_field(value):
     v = try_base64_decode(value)
@@ -32,12 +35,15 @@ def normalize_field(value):
             return v2
     return v
 
+
 def normalize_fields_recursive(data):
     """
     Recursively normalize all fields in a dict/list structure.
     """
     if isinstance(data, dict):
-        return {k: normalize_fields_recursive(normalize_field(v)) for k, v in data.items()}
+        return {
+            k: normalize_fields_recursive(normalize_field(v)) for k, v in data.items()
+        }
     elif isinstance(data, list):
         return [normalize_fields_recursive(normalize_field(i)) for i in data]
     else:

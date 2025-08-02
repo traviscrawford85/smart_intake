@@ -1,10 +1,11 @@
-
-from celery import Celery
-from sqlalchemy.orm import Session
-from app.db import SessionLocal
 from app.clio_client import clio_get
+from app.db import SessionLocal
+from celery import Celery
 
-celery = Celery(__name__, broker="redis://localhost:6379/0", backend="redis://localhost:6379/0")
+celery = Celery(
+    __name__, broker="redis://localhost:6379/0", backend="redis://localhost:6379/0"
+)
+
 
 @celery.task
 def check_matter_deadlines():

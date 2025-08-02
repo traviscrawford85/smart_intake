@@ -105,4 +105,10 @@ docker-compose logs -f intake-admin
 
 ## License
 
-This project is licensed under the MIT License.
+Copyright © 2024 Travis Crawford, CFE-Solutions. All rights reserved.
+
+This software is the confidential and proprietary information of Travis Crawford, CFE-Solutions (“Confidential Information”). You shall not disclose such Confidential Information and shall use it only in accordance with the terms of your agreement with Travis Crawford, CFE-Solutions.
+
+This software is not open source. No permission is granted to use, copy, modify, merge, publish, distribute, sublicense, or sell copies of the Software, except as expressly provided in a written agreement.
+
+For usage terms, please contact Travis Crawford at solutionpartner@cfelab.com

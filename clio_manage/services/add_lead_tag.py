@@ -4,17 +4,13 @@ clio_token = "YOUR_OAUTH_TOKEN"
 contact_id = "CONTACT_ID"
 lead_tag_id = "LEAD_TAG_ID"
 
-headers = {
-    "Authorization": f"Bearer {clio_token}",
-    "Content-Type": "application/json"
-}
+headers = {"Authorization": f"Bearer {clio_token}", "Content-Type": "application/json"}
 
 # Step 1: Fetch existing tags for the contact
 contact_resp = requests.get(
-    f"https://app.clio.com/api/v4/contacts/{contact_id}",
-    headers=headers
+    f"https://app.clio.com/api/v4/contacts/{contact_id}", headers=headers
 )
-existing_tag_ids = contact_resp.json()['data'].get('tag_ids', [])
+existing_tag_ids = contact_resp.json()["data"].get("tag_ids", [])
 
 # Step 2: Add the "Lead" tag (avoid duplicates)
 if lead_tag_id not in existing_tag_ids:
@@ -26,5 +22,5 @@ else:
 requests.put(
     f"https://app.clio.com/api/v4/contacts/{contact_id}",
     headers=headers,
-    json={"data": {"tag_ids": updated_tags}}
+    json={"data": {"tag_ids": updated_tags}},
 )

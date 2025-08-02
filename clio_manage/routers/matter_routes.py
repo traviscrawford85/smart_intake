@@ -1,10 +1,10 @@
-
+from app.clio_client import clio_get
+from app.db import SessionLocal
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.db import SessionLocal
-from app.clio_client import clio_get
 
 router = APIRouter()
+
 
 def get_db():
     db = SessionLocal()
@@ -12,6 +12,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
 
 @router.get("/")
 async def list_matters(db: Session = Depends(get_db)):

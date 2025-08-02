@@ -1,67 +1,34 @@
-version: '3.8'
-
+version: '3.9'
 services:
-  # Intake Agent - FastAPI proxy for lead processing
   intake-agent:
     build:
       context: ./intake_agent
       dockerfile: Dockerfile
-    container_name: clio-intake-agent
+    container_name: intake-agent
     ports:
       - "8000:8000"
-    environment:
-      - CLIO_GROW_INBOX_URL=${CLIO_GROW_INBOX_URL:-https://grow.clio.com/inbox_leads}
-      - LEAD_INBOX_TOKEN=${LEAD_INBOX_TOKEN}
-    volumes:
-      - agent_logs:/app/logs
-      - ./intake_agent/.env:/app/.env:ro
+    env_file:
+      - .env
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-    networks:
-      - intake_network
 
-  # Intake Admin - Dashboard for managing API keys and webhooks  
-  intake-admin:
+  triage-agent:
     build:
-      context: ./intake_admin
+      context: ./clio_manage
       dockerfile: Dockerfile
-    container_name: clio-intake-admin
+    container_name: triage-agent
     ports:
-      - "8001:8001"   # Backend API
-      - "8501:8501"   # Streamlit dashboard
-    environment:
-      - INTAKE_AGENT_URL=http://intake-agent:8000
-      - ADMIN_API_URL=http://localhost:8001
-    volumes:
-      - admin_data:/app/data
-      - admin_logs:/app/logs
+      - "8080:8080"
+    env_file:
+      - .env
     restart: unless-stopped
-    depends_on:
-      intake-agent:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 15s
-    networks:
-      - intake_network
 
-volumes:
-  admin_data:
-    driver: local
-  admin_logs:
-    driver: local 
-  agent_logs:
-    driver: local
-
-networks:
-  intake_network:
-    driver: bridge
-    name: clio-intake-network
+  smart-intake-dashboard:
+    build:
+      context: ./smart_intake_dashboard
+      dockerfile: Dockerfile
+    container_name: smart-intake-dashboard
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    restart: unless-stopped

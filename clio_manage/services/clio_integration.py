@@ -2,24 +2,16 @@
 Clio API integration service layer.
 """
 
-import asyncio
 import logging
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 import httpx
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from clio_manage.models import Contact, CustomAction, WebhookEvent, WebhookSubscription
-from clio_manage.schemas.clio_api import (
-    ContactCreate,
-    ContactResponse,
-    CustomActionCreate,
-    CustomActionResponse,
-    WebhookSubscriptionCreate,
-    WebhookSubscriptionResponse,
-)
+from clio_manage.models import (Contact, CustomAction, WebhookEvent,
+                                WebhookSubscription)
 from clio_manage.utils.clio_api_helpers import clio_api_helper
 
 logger = logging.getLogger(__name__)

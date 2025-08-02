@@ -14,6 +14,8 @@ class ClioTokenBase(BaseModel):
     refresh_token: str | None = None
     token_type: str = "Bearer"
     expires_at: datetime | None = None
+    app_id: str | None = None
+    integration: str | None = None
 
 
 class ClioToken(ClioTokenBase):

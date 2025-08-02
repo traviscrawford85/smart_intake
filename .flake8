@@ -1,0 +1,13 @@
+[flake8]
+# Exclude common virtualenv, cache, and build folders, plus migrations and pycache
+exclude = .git,__pycache__,build,dist,venv,.venv,.mypy_cache,.pytest_cache,.tox,*.egg-info,logs,static,templates,data,notebooks,examples,scripts
+# Only show errors and warnings, not style or complexity
+select = E,F,W
+# Ignore line length and some low-value warnings
+ignore = E501,W503,W504
+# Show only filename, line, and error code/message
+format = default
+# Only show errors (E) and warnings (W), not info/debug
+count = True
+statistics = True
+show-source = True

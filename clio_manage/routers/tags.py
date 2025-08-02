@@ -1,8 +1,7 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter
 
-from clio_manage.clio_base import ClioBaseModel
 from clio_manage.schemas.tag import TagCreate, TagResponse, TagUpdate
 
 router = APIRouter(prefix="/tags", tags=["Tags"])

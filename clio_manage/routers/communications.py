@@ -1,13 +1,10 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter
 
-from clio_manage.clio_base import ClioBaseModel
-from clio_manage.schemas.communication import (
-    CommunicationCreate,
-    CommunicationResponse,
-    CommunicationUpdate,
-)
+from clio_manage.schemas.communication import (CommunicationCreate,
+                                               CommunicationResponse,
+                                               CommunicationUpdate)
 
 router = APIRouter(prefix="/communications", tags=["Communications"])
 

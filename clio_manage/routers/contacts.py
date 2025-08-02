@@ -1,13 +1,9 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter
 
-from clio_manage.clio_base import ClioBaseModel
-from clio_manage.schemas.contact import (
-    ContactCreate,
-    ContactResponse,
-    ContactUpdate,
-)
+from clio_manage.schemas.contact import (ContactCreate, ContactResponse,
+                                         ContactUpdate)
 
 router = APIRouter(prefix="/contacts", tags=["Contacts"])
 

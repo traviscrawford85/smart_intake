@@ -1,2 +1,3 @@
 # Requirements for Smart Intake Dashboard
 streamlit
+requests

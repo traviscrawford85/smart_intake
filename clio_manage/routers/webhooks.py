@@ -1,6 +1,4 @@
-from fastapi import APIRouter, HTTPException, Request
-
-from clio_manage.clio_base import ClioBaseModel
+from fastapi import APIRouter, Request
 
 router = APIRouter(prefix="/webhooks", tags=["Webhooks"])
 

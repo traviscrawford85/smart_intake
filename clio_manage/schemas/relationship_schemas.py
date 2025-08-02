@@ -19,9 +19,7 @@ class EntityRelationshipBase(BaseModel):
     target_entity_type: str = Field(..., description="Type of the target entity")
     target_entity_id: str = Field(..., description="ID of the target entity")
     label: str | None = Field(None, description="Human-readable label")
-    description: str | None = Field(
-        None, description="Description of the relationship"
-    )
+    description: str | None = Field(None, description="Description of the relationship")
     relationship_data: dict[str, Any] | None = Field(
         None, description="Additional relationship data"
     )
