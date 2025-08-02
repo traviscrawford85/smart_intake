@@ -39,7 +39,6 @@ def refresh_access_token(db: Session):
         )
 
 
-
 from sqlalchemy.orm import Session
 
 TOKEN_URL = "https://app.clio.com/oauth/token"

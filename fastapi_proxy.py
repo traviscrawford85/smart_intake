@@ -7,11 +7,15 @@ Receives leads from web forms or Capture Now bot and forwards them to Clio Grow.
 from typing import Any, Dict, Optional
 
 import uvicorn
+
 # Import our enhanced functions
-from app.send_intake import (create_clio_lead,
-                             create_clio_lead_from_any_payload,
-                             map_envelope_to_clio_lead,
-                             process_envelope_payload, validate_envelope)
+from app.send_intake import (
+    create_clio_lead,
+    create_clio_lead_from_any_payload,
+    map_envelope_to_clio_lead,
+    process_envelope_payload,
+    validate_envelope,
+)
 from fastapi import FastAPI, HTTPException, Request, status
 from loguru import logger
 from pydantic import BaseModel, ValidationError

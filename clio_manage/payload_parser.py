@@ -10,8 +10,15 @@ This module provides unified parsing for:
 import os
 from typing import Any, Dict, List, Optional, Union
 
-from app.schemas import (BotDataInput, CaptureNowEnvelope, CaptureNowInboxLead,
-                         ClioInboxLead, DirectPayload, UnifiedLeadInput)
+from app.schemas import (
+    BotDataInput,
+    CaptureNowEnvelope,
+    CaptureNowInboxLead,
+    ClioInboxLead,
+    DirectPayload,
+    UnifiedLeadInput,
+)
+
 # Load environment variables
 from dotenv import load_dotenv
 from loguru import logger

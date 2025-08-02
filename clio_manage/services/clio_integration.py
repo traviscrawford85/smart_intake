@@ -10,8 +10,7 @@ import httpx
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from clio_manage.models import (Contact, CustomAction, WebhookEvent,
-                                WebhookSubscription)
+from clio_manage.models import Contact, CustomAction, WebhookEvent, WebhookSubscription
 from clio_manage.utils.clio_api_helpers import clio_api_helper
 
 logger = logging.getLogger(__name__)

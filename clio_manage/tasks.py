@@ -1,6 +1,9 @@
-from app.clio_client import clio_get
-from app.db import SessionLocal
+import asyncio
+
 from celery import Celery
+
+from clio_manage.clio_client import clio_get
+from clio_manage.db import SessionLocal
 
 celery = Celery(
     __name__, broker="redis://localhost:6379/0", backend="redis://localhost:6379/0"

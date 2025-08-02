@@ -10,8 +10,7 @@ from fastapi import FastAPI, HTTPException
 from lead_parser import auto_parse_lead_data
 from loguru import logger
 from pydantic import BaseModel
-from send_intake import (create_clio_lead_from_any_payload,
-                         post_lead_to_clio_grow_typed)
+from send_intake import create_clio_lead_from_any_payload, post_lead_to_clio_grow_typed
 
 
 def _flatten_response_list(responses):

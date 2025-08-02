@@ -2,9 +2,11 @@ from typing import List
 
 from fastapi import APIRouter
 
-from clio_manage.schemas.communication import (CommunicationCreate,
-                                               CommunicationResponse,
-                                               CommunicationUpdate)
+from clio_manage.schemas.communication import (
+    CommunicationCreate,
+    CommunicationResponse,
+    CommunicationUpdate,
+)
 
 router = APIRouter(prefix="/communications", tags=["Communications"])
 

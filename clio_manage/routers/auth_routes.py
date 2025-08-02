@@ -3,8 +3,11 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
 from clio_manage import config
-from clio_manage.auth import (exchange_code_for_token, get_token_from_db,
-                              refresh_access_token)
+from clio_manage.auth import (
+    exchange_code_for_token,
+    get_token_from_db,
+    refresh_access_token,
+)
 from clio_manage.db import SessionLocal
 
 router = APIRouter()

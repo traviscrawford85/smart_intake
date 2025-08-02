@@ -2,8 +2,7 @@ from typing import List
 
 from fastapi import APIRouter
 
-from clio_manage.schemas.contact import (ContactCreate, ContactResponse,
-                                         ContactUpdate)
+from clio_manage.schemas.contact import ContactCreate, ContactResponse, ContactUpdate
 
 router = APIRouter(prefix="/contacts", tags=["Contacts"])
 
